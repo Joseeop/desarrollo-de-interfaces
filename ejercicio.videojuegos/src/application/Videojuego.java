@@ -24,32 +24,33 @@ public class Videojuego {
 		return nombre;
 	}
 
-	public void setNombre(SimpleStringProperty nombre) {
-		this.nombre = nombre;
+	public void setNombre(String nombre) {
+		
+		this.nombre=new SimpleStringProperty(nombre);
 	}
 
 	public SimpleFloatProperty getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(SimpleFloatProperty precio) {
-		this.precio = precio;
+	public void setPrecio(Float precio) {
+		this.precio = new SimpleFloatProperty(precio);
 	}
 
 	public SimpleStringProperty getConsola() {
 		return consola;
 	}
 
-	public void setConsola(SimpleStringProperty consola) {
-		this.consola = consola;
+	public void setConsola(String consola) {
+		this.consola = new SimpleStringProperty(consola);
 	}
 
 	public SimpleIntegerProperty getPegi() {
 		return pegi;
 	}
 
-	public void setPegi(SimpleIntegerProperty pegi) {
-		this.pegi = pegi;
+	public void setPegi(int pegi) {
+		this.pegi = new SimpleIntegerProperty(pegi);
 	}
-	
+
 }

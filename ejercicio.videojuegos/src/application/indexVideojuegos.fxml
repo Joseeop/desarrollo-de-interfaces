@@ -38,7 +38,7 @@
                         </Label>
                      </top>
                      <bottom>
-                        <Button mnemonicParsing="false" text="Añadir" BorderPane.alignment="CENTER">
+                        <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadirVideojuego" text="Añadir" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </BorderPane.margin>

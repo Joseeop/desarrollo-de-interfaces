@@ -2,7 +2,9 @@ package application;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,7 +18,8 @@ public class indexVideojuegosController {
 	
 	@FXML
 	private TextField txtPrecio;
-	
+	@FXML
+	private Button btnAnadir;
 	@FXML
 	private ChoiceBox chbPegi;
 	
@@ -30,7 +33,7 @@ public class indexVideojuegosController {
 	private TableColumn <Videojuego,String>clNombre;
 	
 	@FXML
-	private TableColumn <Videojuego,String>clPrecio;
+	private TableColumn <Videojuego,Float>clPrecio;
 	
 	@FXML
 	private TableColumn <Videojuego,String>clConsola;
@@ -71,6 +74,16 @@ public class indexVideojuegosController {
 		
 		tableVideojuegos.setItems(listaTotal); 
 	}
-	
+	@FXML
+	private void anadirVideojuego(ActionEvent event) {
+		
+		Videojuego j = new Videojuego(
+				txtNombre.getText(),
+				Float.parseFloat(txtPrecio.getText()),
+				chbConsola.getValue().toString(),
+				Integer.parseInt(chbPegi.getValue().toString())
+				);
+		listaTotal.add(j);
+	}
 	
 }
