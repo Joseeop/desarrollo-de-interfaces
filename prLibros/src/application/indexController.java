@@ -1,5 +1,10 @@
 package application;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,7 +59,49 @@ public class indexController {
 		tbPaginas.setCellValueFactory(new PropertyValueFactory<>("paginas"));
 		tbTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 		tbEditorial.setCellValueFactory(new PropertyValueFactory<>("editorial"));
-		tableLibros.setItems(listaLibros);
+		
+		ObservableList listaLibrosBD=getLibrosBD();
+		tableLibros.setItems(listaLibrosBD);
+	}
+	
+	private ObservableList<Libro> getLibrosBD(){
+		
+		/*
+		 * Creamos la ObservableList donde almacenaremos
+		 * los libros obtediso de la Base de datos.
+		 */
+		ObservableList<Libro> listaLibrosBD =FXCollections.observableArrayList();
+		
+		
+		// Nos conectamos a la BD
+		 
+		DatabaseConnection dbConnection=new DatabaseConnection();
+		Connection connection = dbConnection.getConnection();
+		String query = "select * from libros";
+		try {
+			PreparedStatement ps = connection.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Libro libro= new Libro(
+						rs.getString("titulo"),
+						rs.getString("editorial"),
+						rs.getString("autor"),
+						rs.getInt("paginas")
+						);
+				
+				listaLibrosBD.add(libro);
+			}
+			//Cerramos la conexión.
+			connection.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
+		return listaLibrosBD;
 	}
 
 	// FUNCION PARA COMPROBAR SI ES UN NÚMERO
@@ -102,8 +149,27 @@ public class indexController {
 	@FXML
 	public void borrarLibro(ActionEvent event) {
 		System.out.println("Borrando un libro");
-		int indeceSeleccionado=tableLibros
-							.getSelectionModel().getSelectedIndex();
-		tableLibros.getItems().remove(indeceSeleccionado);
+		int indiceSeleccionado=tableLibros
+							.getSelectionModel()
+							.getSelectedIndex();
+		
+		System.out.println("Índice a borrar: "+indiceSeleccionado);
+		
+		
+		if(indiceSeleccionado <= -1) {
+			//ALERTA ERROR
+			Alert alerta = new Alert(AlertType.ERROR);
+			//Qué ha ocurrido?
+			alerta.setTitle("Error al borrar");
+			//Porqué ha ocurrido el error?
+			alerta.setHeaderText("No se ha seleccionado ningún libro a borrar");
+			//Cómo solucionar el error.
+			alerta.setContentText("Por favor, seleccione un libro");
+			//ShowAndWait para dejar bloqueada la pantalla hasta que cerremos la ventana de error.
+			alerta.showAndWait();
+		}else {
+			tableLibros.getItems().remove(indiceSeleccionado);
+			tableLibros.getSelectionModel().clearSelection();
+		}
 	}
 }

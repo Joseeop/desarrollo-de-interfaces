@@ -1,1 +1,15 @@
-/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*BUSCAR EN DOCUMENTACIÓN COMO SE INVOCA CADA ELEMENTO QUE QUEREMOS MODIFICAR */
+
+
+/* MODIFICAMOS TODOS LOS BOTONES DE LA APP LIGADOS AL ARCHIVO .CSS */
+.button {
+	-fx-background-color: black;
+	-fx-font-size:12pt;
+	-fx-text-fill: lightblue;
+}
+
+/* LE HEMOS PUESTO UN ID EN EL SCENEBUILDER AL PANEL IZQUIERDO. LOS ESTILOS DEFINIDOS AQUÍ DENTRO AFECTARÁN SÓLO A ÉSTE ID. */
+#panel_izq{
+	
+	-fx-background-color:lightblue;
+}
