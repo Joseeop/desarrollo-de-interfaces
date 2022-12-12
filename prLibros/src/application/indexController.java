@@ -50,7 +50,7 @@ public class indexController {
 			"Kadokawa");
 
 	private ObservableList<Libro> listaLibros = FXCollections
-			.observableArrayList(new Libro("La Biblia", "Planeta", "CasiLeo", 300));
+			.observableArrayList();
 
 	@FXML
 	private void initialize() {
@@ -84,6 +84,7 @@ public class indexController {
 			
 			while(rs.next()) {
 				Libro libro= new Libro(
+						rs.getInt("id"),
 						rs.getString("titulo"),
 						rs.getString("editorial"),
 						rs.getString("autor"),
@@ -128,13 +129,43 @@ public class indexController {
 			if (esNumero(txtPaginas.getText())) {
 				Libro l = new Libro(txtTitulo.getText(), chbEditorial.getValue().toString(), txtAutor.getText(),
 						Integer.parseInt(txtPaginas.getText()));
-				listaLibros.add(l);
+				
+				
+				//listaLibros.add(l);
+				//tableLibros.setItems(listaLibros);
 
 				// DEJAMOS LOS CAMPOS EN BLANCO PARA SEGUIR INTRODUCIENDO LIBROS.
 				txtTitulo.clear();
 				chbEditorial.getSelectionModel().clearSelection();
 				txtAutor.clear();
 				txtPaginas.clear();
+				
+				//Nos conectamos a la base de datos
+				DatabaseConnection dbConnection=new DatabaseConnection();
+				Connection connection = dbConnection.getConnection();
+				
+				
+				
+				try {
+					String query = "insert into libros(titulo,editorial,autor,paginas)"
+							+ "VALUES(?,?,?,?)";
+					PreparedStatement ps = connection.prepareStatement(query);
+					ps.setString(1, l.getTitulo());
+					ps.setString(2, l.getEditorial());
+					ps.setString(3, l.getAutor());
+					ps.setInt(4, l.getPaginas());
+					ps.executeUpdate();
+					
+					//CERRAMOS SESIÓN
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// Después de insertar actualizamos la tabla
+				ObservableList listaLibrosBD=getLibrosBD();
+				tableLibros.setItems(listaLibrosBD);
+				
 			} else {
 				Alert alerta = new Alert(AlertType.ERROR);
 				alerta.setTitle("Error al insertar");
@@ -168,8 +199,32 @@ public class indexController {
 			//ShowAndWait para dejar bloqueada la pantalla hasta que cerremos la ventana de error.
 			alerta.showAndWait();
 		}else {
-			tableLibros.getItems().remove(indiceSeleccionado);
-			tableLibros.getSelectionModel().clearSelection();
+			//tableLibros.getItems().remove(indiceSeleccionado);
+			//tableLibros.getSelectionModel().clearSelection();
+			
+			//Nos conectamos a la base de datos
+			DatabaseConnection dbConnection=new DatabaseConnection();
+			Connection connection = dbConnection.getConnection();
+			
+			
+			try {
+				String query = "delete from libros where id=?";
+				PreparedStatement ps= connection.prepareStatement(query);
+				Libro libro= (Libro) tableLibros.getSelectionModel().getSelectedItem();
+				ps.setInt(1,libro.getId());
+				ps.executeUpdate();
+				
+				tableLibros.getSelectionModel().clearSelection();
+				
+				//Actualizamos la tabla
+				ObservableList listaLibrosBD=getLibrosBD();
+				tableLibros.setItems(listaLibrosBD);
+				//Cerramos conexión.
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }
