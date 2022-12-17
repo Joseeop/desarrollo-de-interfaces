@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
@@ -37,13 +38,6 @@
                            </padding>
                         </Label>
                      </top>
-                     <bottom>
-                        <Button fx:id="btnAnadir" mnemonicParsing="false" onAction="#anadirVideojuego" text="Añadir" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </BorderPane.margin>
-                        </Button>
-                     </bottom>
                      <center>
                         <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="258.0" BorderPane.alignment="CENTER">
                           <columnConstraints>
@@ -73,6 +67,18 @@
                            </children>
                         </GridPane>
                      </center>
+                     <bottom>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnAnadir1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#anadirVideojuego" text="Añadir" />
+                              <Button fx:id="btnBorrar" mnemonicParsing="false" onAction="#borrarVideojuego" text="Borrar">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </bottom>
                   </BorderPane>
                </children>
             </AnchorPane>
