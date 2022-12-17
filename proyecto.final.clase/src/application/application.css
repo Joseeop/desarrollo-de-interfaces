@@ -1,0 +1,45 @@
+/*BUSCAR EN DOCUMENTACIÓN COMO SE INVOCA CADA ELEMENTO QUE QUEREMOS MODIFICAR */
+
+
+/* MODIFICAMOS TODOS LOS BOTONES DE LA APP LIGADOS AL ARCHIVO .CSS */
+.button {
+	-fx-background-color: #8fbc8f;
+        -fx-border-color: #FFFFFF;
+        -fx-border-width: 2.0;
+         -fx-text-fill: #FFFFFF;
+         -fx-font-family: "Times New Roman";
+         -fx-font-style: italic;
+         -fx-font-size: 28.0px;
+         -fx-background-radius: 10.0 10.0 10.0 10.0;
+         -fx-border-radius: 10.0 10.0 10.0 10.0;
+}
+Button:hover { 
+		-fx-background-color: #8fbc8f;
+        -fx-font-size: 22.0px;
+}
+
+Button:pressed { 
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-font-weight: bold;
+}
+
+/* LE HEMOS PUESTO UN ID EN EL SCENEBUILDER AL PANEL IZQUIERDO. LOS ESTILOS DEFINIDOS AQUÍ DENTRO AFECTARÁN SÓLO A ÉSTE ID. */
+#panel_izq{
+	
+	-fx-background-color:honeydew;
+
+  
+}
+#columnaNombre,#columnaEspecialidad{
+	-fx-background-color:honeydew;
+	-fx-text-fill: black;
+}
+#columnaApellido,#columnaEdad{
+	-fx-background-color:ivory;
+	-fx-text-fill: black;
+}
+#panel_derecho{
+	-fx-background-color: #008080;
+	-fx-font-family: "Comic Sans MS";
+}
