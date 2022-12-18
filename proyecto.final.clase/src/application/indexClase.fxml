@@ -20,7 +20,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.indexController">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar id="menuBar" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Inicio" />
           <Menu mnemonicParsing="false" text="Preferencias" />

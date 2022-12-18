@@ -13,9 +13,9 @@
          -fx-background-radius: 10.0 10.0 10.0 10.0;
          -fx-border-radius: 10.0 10.0 10.0 10.0;
 }
-Button:hover { 
-		-fx-background-color: #8fbc8f;
-        -fx-font-size: 22.0px;
+.button:hover {
+    -fx-background-color: #383838;
+    -fx-scale-y: 1.1;
 }
 
 Button:pressed { 
@@ -28,14 +28,17 @@ Button:pressed {
 #panel_izq{
 	
 	-fx-background-color:honeydew;
+	-fx-font-family:"Times New Roman";
 
-  
+}
+#menuBar{
+	-fx-font-family:"Times New Roman";
 }
 #columnaNombre,#columnaEspecialidad{
 	-fx-background-color:honeydew;
 	-fx-text-fill: black;
 }
-#columnaApellido,#columnaEdad{
+#columnaApellido,#columnaEdad,#menuBar{
 	-fx-background-color:ivory;
 	-fx-text-fill: black;
 }
