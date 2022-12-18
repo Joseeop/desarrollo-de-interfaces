@@ -83,9 +83,10 @@ public class indexController {
 
 			while (rs.next()) {
 				Alumno alumno = new Alumno(
+						rs.getInt("id"),
 						rs.getString("nombre"), 
-						rs.getString("especialidad"),
 						rs.getString("apellido"),
+						rs.getString("especialidad"),
 						rs.getInt("edad"));
 
 				listaAlumnosBD.add(alumno);
@@ -122,7 +123,7 @@ public class indexController {
 			alertaEmpty.showAndWait();
 		} else {
 			if (esNumero(txtEdad.getText())) {
-				Alumno a = new Alumno(txtNombre.getText(), chbEspecialidad.getValue().toString(), txtApellido.getText(),
+				Alumno a = new Alumno(txtNombre.getText(),  txtApellido.getText(),chbEspecialidad.getValue().toString(),
 						Integer.parseInt(txtEdad.getText()));
 
 				// listaLibros.add(l);
