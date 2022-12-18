@@ -1,1 +1,49 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/*BUSCAR EN DOCUMENTACIÓN COMO SE INVOCA CADA ELEMENTO QUE QUEREMOS MODIFICAR */
+
+
+/* MODIFICAMOS TODOS LOS BOTONES DE LA APP LIGADOS AL ARCHIVO .CSS */
+.button {
+	-fx-background-color: #8fbc8f;
+        -fx-border-color: #FFFFFF;
+        -fx-border-width: 2.0;
+         -fx-text-fill: #FFFFFF;
+         -fx-font-family: "Times New Roman";
+         -fx-font-style: italic;
+         -fx-font-size: 28.0px;
+         -fx-background-radius: 10.0 10.0 10.0 10.0;
+         -fx-border-radius: 10.0 10.0 10.0 10.0;
+}
+.button:hover {
+    -fx-background-color: #383838;
+    -fx-scale-y: 1.1;
+}
+
+Button:pressed { 
+	-fx-background-color: #FFFFFF;
+	-fx-text-fill: #000000;
+	-fx-font-weight: bold;
+}
+
+/* LE HEMOS PUESTO UN ID EN EL SCENEBUILDER AL PANEL IZQUIERDO. LOS ESTILOS DEFINIDOS AQUÍ DENTRO AFECTARÁN SÓLO A ÉSTE ID. */
+#panelIzquierdo{
+	
+	-fx-background-color:honeydew;
+	-fx-font-family:"Times New Roman";
+
+}
+#menuBar{
+	-fx-font-family:"Times New Roman";
+}
+#cNombre,#cConsola{
+	-fx-background-color:honeydew;
+	-fx-text-fill: black;
+}
+#cPrecio,#cPegi,#menuBar{
+	-fx-background-color:ivory;
+	-fx-text-fill: black;
+}
+#panelDerecho{
+	-fx-background-color: #008080;
+	-fx-font-family: "Comic Sans MS";
+}
